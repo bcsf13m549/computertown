@@ -1,0 +1,67 @@
+﻿@model Computer.Models.User
+<!DOCTYPE html>
+<html lang="en">
+@Html.Partial("_adminheader")<!--/head-->
+
+<body>
+
+<!--/header-->
+    <br></br>
+    <br></br>
+    <aside class="col-md-4">
+        <div class="widget search">
+            <form action="~/Admin/searchingUser" method="post">
+                <input type="text" class="form-control search_box" autocomplete="off" placeholder="Search Here" name="user">
+                <button type="submit" class="btn btn-primary readmore" formaction="~/Admin/searchingUser">Search<i class="fa fa-angle-right"></i></button>
+            </form>
+        </div><!--/.search-->
+      <!--  <h2>UserName<nsbp>Login</nsbp><nsbp>Passsword</nsbp></h2>
+        <ul>
+            <li>Marshall<span><span><span><span><span>MArhsall</span></span></span></span></span><span>1234</span></li>
+            <li>Mike<span>Mike Paul</span><span>564</span></li>
+            <li>Marsh<span>MArshZeba</span><span>uds</span></li>
+        </ul> -->
+      <!--  <span style="display:inline-block; width: YOURWIDTH;">Username</span><span style="display:inline-block; width: YOURWIDTH;">login</span>  -->
+        <table>
+        <tr>
+            <th>UserID</th>
+            <th>Username</th>
+           <!-- <td>Login</td>  -->
+            <th>Password</th>
+                </tr> 
+              @{
+                foreach( var user in ViewBag.UserList)
+                 {
+                   <tr>
+                    <td>@user.UserID</td>
+                    <td>@user.Name</td>
+                  <!--  <td>Marshall Kevin</td>  -->
+                    <td>@user.Password</td>
+                    <td><a class="btn btn-primary readmore" href="~/Admin/DelUser/@user.UserID">Delete <i class="fa fa-angle-right"></i></a></td>
+                  </tr>
+                }
+                    
+            }
+          
+               <!--  <tr>
+                   <td>Marshall</td>
+                  <!-- <td>Mike Paul</td>
+                    <td>1234</td>
+                    <td><a class="btn btn-primary readmore" href="~/Home/blogitem">Delete <i class="fa fa-angle-right"></i></a></td>
+                  </tr>
+                <tr>
+                   <td>Mike</td>
+                 <!--  <td>Mike Paul</td>
+                    <td>456</td>
+                    <td><a class="btn btn-primary readmore" href="~/Home/blogitem">Delete <i class="fa fa-angle-right"></i></a></td>
+                  </tr>
+                   <tr>
+                    <td>Marsh</td>
+                  <!--  <td>MarshZeba</td>
+                    <td>134</td>
+                    <td><a class="btn btn-primary readmore" href="~/Home/blogitem">Delete <i class="fa fa-angle-right"></i></a></td>
+                  </tr>  -->
+
+            </table>
+        </body>
+    </html>

@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+@Html.Partial("_normaluserheader")<!--/head-->
+
+ <body class="homepage">
+
+<!--/header-->
+	
+	<!--container start-->
+<div class="login-bg">
+    <div class="container">
+        <div class="form-wrapper">
+            <form action="~/Home/StoreLogin">
+                <h2 class="form-signin-heading">sign in now</h2>
+                <br></br>
+                <div class="login-wrap">
+                    <input type="text" width="30" height="30" placeholder="User ID" name ="uname" autofocus>
+                    <br></br>
+                    <input type="password" width="30" height="30" placeholder="Password" name="pwd">
+                    <!--label class="checkbox">
+                        <!--input type="checkbox" value="remember-me">
+                        <span> <br></br>
+                            <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
+
+                        </span>
+                    </label-->
+                    <br></br>
+                    <button width="100" height="50" type="submit" formaction="~/Home/StoreLogin">Sign in</button>
+                    <!--p>or you can sign in via social network</p>
+                    <div class="login-social-link">
+                        <a href="index.html" class="facebook">
+                            <i class="fa fa-facebook"></i>
+                            Facebook
+                        </a>
+                        <a href="index.html" class="twitter">
+                            <i class="fa fa-twitter"></i>
+                            Twitter
+                        </a>
+                    </div-->
+                    <br></br>
+                    <div class="registration">
+                        Don't have an account yet?
+                        <a class="" href="register">
+                            Create an account
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Modal -->
+                <div aria-hidden="true" aria-labelledby="myModal" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Forgot Password ?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Enter your e-mail address below to reset your password.</p>
+                                <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                                <button class="btn btn-success" type="button">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- modal -->
+
+            </form>
+        </div>
+    </div>
+</div>
+
+	
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="~/Scripts/hover-dropdown.js"></script>
+<script defer src="~/Scripts/jquery.flexslider.js"></script>
+    <script type="text/javascript" src="assets/bxslider/jquery.bxslider.js"></script>
+
+<script src="~/Scripts/jquery.easing.min.js"></script>
+<script src="~/Scripts/link-hover.js"></script>
+
+
+     <!--common script for all pages-->
+<script src="~/Scripts/common-scripts.js"></script>
+
+
+<script src="~/Scripts/wow.min.js"></script>
+    <script>
+        wow = new WOW(
+          {
+            boxClass:     'wow',      // default
+            animateClass: 'animated', // default
+            offset:       0          // default
+          }
+        )
+        wow.init();
+    </script>
+
+  </body>
+</html>

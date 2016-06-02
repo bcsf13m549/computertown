@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WebDB" Class="dataclassDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\WebDB.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="WebDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Admin" Member="Admins">
+    <Type Name="Admin">
+      <Column Name="AID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="adminname" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="adminpassword" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Admin_ProjectComment" Member="ProjectComments" ThisKey="AID" OtherKey="AID" Type="ProjectComment" />
+      <Association Name="Admin_UserComment" Member="UserComments" ThisKey="AID" OtherKey="AID" Type="UserComment" />
+      <Association Name="Admin_UserPIdea" Member="UserPIdeas" ThisKey="AID" OtherKey="AID" Type="UserPIdea" />
+      <Association Name="Admin_UserQuestion" Member="UserQuestions" ThisKey="AID" OtherKey="AID" Type="UserQuestion" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Question" Member="Questions">
+    <Type Name="Question">
+      <Column Name="QID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Question" Member="question" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Category" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="qimg" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Question_UserComment" Member="UserComments" ThisKey="QID" OtherKey="QID" Type="UserComment" />
+      <Association Name="Question_UserQuestion" Member="UserQuestions" ThisKey="QID" OtherKey="QID" Type="UserQuestion" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="User_ProjectComment" Member="ProjectComments" ThisKey="UserID" OtherKey="UserID" Type="ProjectComment" />
+      <Association Name="User_UserComment" Member="UserComments" ThisKey="UserID" OtherKey="UserID" Type="UserComment" />
+      <Association Name="User_UserPIdea" Member="UserPIdeas" ThisKey="UserID" OtherKey="UserID" Type="UserPIdea" />
+      <Association Name="User_UserQuestion" Member="UserQuestions" ThisKey="UserID" OtherKey="UserID" Type="UserQuestion" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProjectComment" Member="ProjectComments">
+    <Type Name="ProjectComment">
+      <Column Name="PCId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Admin_ProjectComment" Member="Admin" ThisKey="AID" OtherKey="AID" Type="Admin" IsForeignKey="true" />
+      <Association Name="User_ProjectComment" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="UserPIdea_ProjectComment" Member="UserPIdea" ThisKey="Id" OtherKey="Id" Type="UserPIdea" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserComment" Member="UserComments">
+    <Type Name="UserComment">
+      <Column Name="UCID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="QID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="AID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Admin_UserComment" Member="Admin" ThisKey="AID" OtherKey="AID" Type="Admin" IsForeignKey="true" />
+      <Association Name="Question_UserComment" Member="Question" ThisKey="QID" OtherKey="QID" Type="Question" IsForeignKey="true" />
+      <Association Name="User_UserComment" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserPIdea" Member="UserPIdeas">
+    <Type Name="UserPIdea">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProjectIdea" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="pimg" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="UserPIdea_ProjectComment" Member="ProjectComments" ThisKey="Id" OtherKey="Id" Type="ProjectComment" />
+      <Association Name="Admin_UserPIdea" Member="Admin" ThisKey="AID" OtherKey="AID" Type="Admin" IsForeignKey="true" />
+      <Association Name="User_UserPIdea" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserQuestion" Member="UserQuestions">
+    <Type Name="UserQuestion">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="QID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Admin_UserQuestion" Member="Admin" ThisKey="AID" OtherKey="AID" Type="Admin" IsForeignKey="true" />
+      <Association Name="Question_UserQuestion" Member="Question" ThisKey="QID" OtherKey="QID" Type="Question" IsForeignKey="true" />
+      <Association Name="User_UserQuestion" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

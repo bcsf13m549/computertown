@@ -1,0 +1,51 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+@Html.Partial("_adminheader")<!--/head-->
+
+ <body class="homepage">
+
+<!--/header-->
+	
+	
+	 <div class="login-bg">
+        <div class="container">
+            <div align="center" class="form-wrapper">
+            <form center bgcolor="red" class="form-signin wow fadeInUp" method="post" action="~/Admin/editfinalother" enctype="multipart/form-data" runat="server">
+            <h1> Post a Question</h1>
+			<div align="center" class="login-wrap">
+                <b>Enter Category: </b>
+                <br />
+              <!--  <input type="text" width="100" margin-bottom="10" autofocus>  -->
+                <select name="category">
+                    <option value="hardware">Hardware Question</option>
+                    <option value="coding">Coding Question</option>
+                    <option value="projectidea">Project Ideas</option>
+                    <!--li><a href="shortcodes.html">Shortcodes</a></li-->
+                 </select>
+				<br />
+                <input type="file" id="image" name="image" />
+                <br />
+                <p><b>Write the text below: </b></p>
+                <br />
+                <textarea placeholder="Question" rows="8" cols="50" autofocus name="ques">
+                </textarea>
+                <br />
+                
+               <!-- <label class="checkbox" text-align="center">
+                    <input type="checkbox" value="remember-me"> Remember me
+                    <span> <br>
+                        <a align="center" data-toggle="modal" href="#myModal"> Forgot Password?</a>
+                    </span>
+                </label>-->
+           
+                <button center-left="10" type="submit" formaction="~/Admin/editfinalother">Post</button>
+              
+                    
+                </form>
+			</div>
+			</div>
+			</div>
+     </body>
+    </html>
